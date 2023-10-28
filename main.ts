@@ -1,6 +1,12 @@
 input.onGesture(Gesture.LogoUp, function () {
     mabble.change(LedSpriteProperty.Y, 1)
 })
+input.onGesture(Gesture.TiltLeft, function () {
+    mabble.change(LedSpriteProperty.X, -1)
+})
+input.onGesture(Gesture.TiltRight, function () {
+    mabble.change(LedSpriteProperty.X, 1)
+})
 input.onGesture(Gesture.LogoDown, function () {
     mabble.change(LedSpriteProperty.Y, -1)
 })
@@ -32,6 +38,10 @@ basic.forever(function () {
     for (let obstacle2 of obstacles) {
         if (obstacle2.get(LedSpriteProperty.X) == mabble.get(LedSpriteProperty.X) && obstacle2.get(LedSpriteProperty.Y) == mabble.get(LedSpriteProperty.Y)) {
             game.gameOver()
+        } else {
+            if (obstacle2.get(LedSpriteProperty.X) == 0) {
+                game.addScore(1)
+            }
         }
     }
     ticks += 1
